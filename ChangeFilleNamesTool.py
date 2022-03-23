@@ -2,14 +2,7 @@
 from email.policy import default
 import os
 from glob import glob
-from tkinter import messagebox
 import PySimpleGUI as sg
-
-# os ファイル操作
-# glob 指定フォルダ内のファイルを一括取得
-# tkinter　メッセージボックス　https://pg-chain.com/python-messagebox
-# PySimpleGUI　入力画面　　https://pysimplegui.readthedocs.io/en/latest/
-
 # *******************************************
 #  グローバル変数定義
 # *******************************************
@@ -154,7 +147,7 @@ def main():
           # フォルダパス
           errmsg = chkfldpath(fldpath)
           if errmsg != '':
-            errtitle = 'フォルダパスエラー'     
+            errtitle = 'フォルダパス'     
             errmsg = 'フォルダパス\n' + errmsg              
             raise Exception('チェックエラー')    
 
@@ -252,12 +245,12 @@ def main():
               
         #### チェックエラー　####
         except Exception as e:    
-          print(e)
           if len(errmsg) == 0:
             errtitle='システムエラー'
             errmsg='システムエラー' + e
 
-          messagebox.showerror(errtitle, errmsg)
+          # messagebox.showerror(errtitle, errmsg)
+          sg.popup_ok(errmsg,title=errtitle,)  # エラーボタンを表示
   window.close()
 
 
